@@ -1,0 +1,11 @@
+Price = float(input('Enter Price of Product  : '))
+Amount = int(input('Enter Amount of Product : '))
+
+print('---------------------------------------')
+print('{:<12} : {:>15,.2f} Baht'.format('PRICE',Price))
+print('{:<12} : {:>15,.2f} Baht'.format('AMOUNT',Amount))
+print('{:<12} : {:>15,.2f} Baht'.format('SUBTOTAL',Price*Amount))
+print('---------------------------------------')
+print('{:<12} : {:>15,.2f} Baht'.format('VAT (7%)',(Price*Amount)*0.07))
+print('{:<12} : {:>15,.2f} Baht'.format('GRAND TOTAL',(Price*Amount)*1.07))
+print('---------------------------------------')
