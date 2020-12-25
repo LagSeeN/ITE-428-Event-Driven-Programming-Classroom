@@ -1,5 +1,4 @@
-SELECT * FROM Products
-WHERE UnitPrice > (SELECT avg(UnitPrice) FROM Products);
+SELECT  *,UnitPrice-(SELECT avg(UnitPrice) FROM Products) AS 'More AVG' FROM Products WHERE UnitPrice > (SELECT avg(UnitPrice) FROM Products) GROUP By ProductId ORDER BY UnitPrice DESC;
 
 SELECT *,UnitPrice * UnitsInStock AS 'Value in Stock' FROM Products
 WHERE  UnitPrice * UnitsInStock > 3000;
@@ -26,3 +25,24 @@ SELECT Suppliers.CompanyName, Categories.CategoryName, count(ProductId), avg(Uni
 INNER JOIN Categories,Products
 ON Products.SupplierId = Suppliers.SupplierID AND Products.CategoryId = Categories.CategoryID
 GROUP BY 1,2;
+
+SELECT OrdersDetails.OrderId,Orders.OrderDate,Orders.ShipName,Products.ProductName,OrdersDetails.UnitPrice*OrdersDetails.Quantity,Shippers.CompanyName FROM OrdersDetails
+INNER JOIN Orders,Shippers,Products
+ON OrdersDetails.OrderID = Orders.OrderId AND OrdersDetails.ProductId = Products.ProductID
+WHERE OrdersDetails.OrderId = 10309;
+
+
+-- sql 9
+CREATE VIEW report_order AS SELECT OrdersDetails.OrderId,Orders.OrderDate,Orders.ShipName,Products.ProductName,OrdersDetails.UnitPrice*OrdersDetails.Quantity,Shippers.CompanyName FROM OrdersDetails
+INNER JOIN Orders,Shippers,Products
+ON OrdersDetails.OrderID = Orders.OrderId AND OrdersDetails.ProductId = Products.ProductID;
+
+SELECT * FROM report_order
+WHERE OrderId = 10309;
+-------
+
+SELECT Orders.ShipCountry, Count(Orders.OrderId) AS 'No. Order',sum(OrdersDetails.UnitPrice*OrdersDetails.Quantity) AS 'Net Price', sum(OrdersDetails.UnitPrice*OrdersDetails.Quantity)/Count(Orders.OrderId) AS 'Price/Order' FROM OrdersDetails
+INNER JOIN Orders,Customers
+ON OrdersDetails.OrderID = Orders.OrderId AND Orders.CustomerId = Customers.CustomerId
+GROUP BY 1
+ORDER BY 4 DESC;
