@@ -1,7 +1,7 @@
 import sqlite3
 
 
-def readDemo(db, myParam):
+def sqlquery(db, myParam):
     with (sqlite3.connect(db)) as conn:
         conn.row_factory = sqlite3.Row
         sql_commad = '''SELECT *,UnitPrice * UnitsInStock AS 'Value in Stock' FROM Products
@@ -17,4 +17,4 @@ if __name__ == '__main__':
     database = './MyData/Sqlite_Northwind.sqlite3'
     stockValue = int(input('Input StockValue to want : '))
     p = [stockValue]
-    readDemo(database, p)
+    sqlquery(database, p)

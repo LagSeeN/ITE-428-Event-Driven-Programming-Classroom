@@ -1,7 +1,7 @@
 import sqlite3
 
 
-def readDemo(db):
+def sqlquery(db):
     with (sqlite3.connect(db)) as conn:
         conn.row_factory = sqlite3.Row
         sql_commad = '''SELECT DISTINCT Region,count(DISTINCT Country) As Country ,count(DISTINCT City) As City FROM Customers 
@@ -18,4 +18,4 @@ def readDemo(db):
 
 if __name__ == '__main__':
     database = './MyData/Sqlite_Northwind.sqlite3'
-    readDemo(database)
+    sqlquery(database)

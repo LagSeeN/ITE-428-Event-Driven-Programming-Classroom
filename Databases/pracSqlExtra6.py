@@ -1,7 +1,7 @@
 import sqlite3
 
 
-def readDemo(db, myParam):
+def sqlquery(db, myParam):
     with (sqlite3.connect(db)) as conn:
         conn.row_factory = sqlite3.Row
         sql_commad = '''SELECT CategoryName, count(ProductId) As 'Count Product', sum(UnitPrice * UnitsInStock) As 'Sum of Value' FROM Categories
@@ -24,4 +24,4 @@ if __name__ == '__main__':
     database = './MyData/Sqlite_Northwind.sqlite3'
     stockValue = int(input('See Value of Stock by Category > : '))
     p = [stockValue]
-    readDemo(database, p)
+    sqlquery(database, p)

@@ -1,7 +1,7 @@
 import sqlite3
 
 
-def readDemo(db, myParam):
+def sqlquery(db, myParam):
     with (sqlite3.connect(db)) as conn:
         conn.row_factory = sqlite3.Row
         sql_commad = '''SELECT ProductName,UnitPrice,CategoryName FROM Products
@@ -23,4 +23,4 @@ if __name__ == '__main__':
     category = input('Enter your category name to see  : ')
     print()
     p = [category]
-    readDemo(database, p)
+    sqlquery(database, p)

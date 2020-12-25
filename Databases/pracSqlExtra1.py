@@ -1,7 +1,7 @@
 import sqlite3
 
 
-def readDemo(db, myParam, order):
+def sqlquery(db, myParam, order):
     with (sqlite3.connect(db)) as conn:
         conn.row_factory = sqlite3.Row
         sql_commad = '''SELECT ProductName,UnitPrice FROM Products
@@ -30,4 +30,4 @@ if __name__ == '__main__':
         if order == 1 or order == 2: break
     print()
     p = [start, end]
-    readDemo(database, p, 'ASC' if order == 1 else 'DESC')
+    sqlquery(database, p, 'ASC' if order == 1 else 'DESC')
