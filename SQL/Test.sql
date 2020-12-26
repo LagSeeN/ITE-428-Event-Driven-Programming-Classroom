@@ -46,3 +46,11 @@ INNER JOIN Orders,Customers
 ON OrdersDetails.OrderID = Orders.OrderId AND Orders.CustomerId = Customers.CustomerId
 GROUP BY 1
 ORDER BY 4 DESC;
+
+SELECT Products.ProductId,Products.ProductName,count(OrdersDetails.OrderID) AS "Count" FROM Products
+INNER JOIN OrdersDetails
+ON OrdersDetails.ProductId = Products.ProductID
+GROUP BY Products.ProductName
+HAVING "Count" > 50;
+
+INSERT INTO "main"."Customers" ("CustomerID", "CompanyName", "ContactName", "ContactTitle", "Address", "City", "Region", "PostalCode", "Country", "Phone", "Fax") VALUES ('ALFKI', 'Alfreds Futterkiste', 'Maria Anders', 'Sales Representative', 'Obere Str. 57', 'Berlin', 'Western Europe', '12209', 'Germany', '030-0074321', '030-0076545');

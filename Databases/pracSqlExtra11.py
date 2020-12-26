@@ -4,7 +4,7 @@ import sqlite3
 def sqlquery(db):
     with (sqlite3.connect(db)) as conn:
         conn.row_factory = sqlite3.Row
-        sql_commad = '''SELECT  *,UnitPrice-(SELECT avg(UnitPrice) FROM Products) AS 'More AVG' FROM Products 
+        sql_commad = '''SELECT  *,UnitPrice-(SELECT avg(UnitPrice) FROM Products) AS "More AVG" FROM Products 
                         WHERE UnitPrice > (SELECT avg(UnitPrice) FROM Products) 
                         GROUP By ProductId 
                         ORDER BY UnitPrice DESC; '''

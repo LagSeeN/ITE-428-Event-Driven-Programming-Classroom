@@ -4,8 +4,8 @@ import sqlite3
 def sqlquery(db, myParam):
     with (sqlite3.connect(db)) as conn:
         conn.row_factory = sqlite3.Row
-        sql_commad = '''SELECT *,UnitPrice * UnitsInStock AS 'Value in Stock' FROM Products
-                        WHERE  UnitPrice * UnitsInStock > ? '''
+        sql_commad = '''SELECT *,UnitPrice * UnitsInStock AS "Value in Stock" FROM Products
+                        WHERE  "Value in Stock" > ? '''
         cursor = conn.execute(sql_commad,myParam)
         for i in cursor:
             print('ID : {}'.format(i['productid']))
