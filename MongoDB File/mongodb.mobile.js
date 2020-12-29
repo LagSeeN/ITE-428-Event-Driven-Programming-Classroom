@@ -3,26 +3,48 @@ db.Products.find({}).count();
 db.Products.findOne();
 db.Products.findOne();
 db.Products.find({}).limit(5);
-db.Products.find({}).sort({'pbrand':-1,'pprice':-1});
+db.Products.find({}).sort({ 'pbrand': -1, 'pprice': -1 });
 
-db.Products.find({'pprice':{'$gt':10000}});
-db.Products.find({'pprice':{'$gt':10000}}).count();
-db.Products.find({'pprice':{'$gt':10000}}).sort({'pprice':-1});
+db.Products.find({ 'pprice': { '$gt': 10000 } });
+db.Products.find({ 'pprice': { '$gt': 10000 } }).count();
+db.Products.find({ 'pprice': { '$gt': 10000 } }).sort({ 'pprice': -1 });
 
-db.Products.find({'psize':{'$lt':5}}).sort({'pprice':1});
+db.Products.find({ 'psize': { '$lt': 5 } }).sort({ 'pprice': 1 });
 
-db.Products.find({'pprice':{'$lt':10000}});
+db.Products.find({ 'pprice': { '$lt': 10000 } });
 
-db.Products.find({}).sort({'pbrand':1,'psize':-1});
+db.Products.find({}).sort({ 'pbrand': 1, 'psize': -1 });
 
-db.Products.find({'pprice':{'$eq':10000}});
+db.Products.find({ 'pprice': { '$eq': 10000 } });
 
-db.Products.find({'psize':{'$nin':[5,6]}}).sort({'psize':-1});
+db.Products.find({ 'psize': { '$nin': [5, 6] } }).sort({ 'psize': -1 });
 
-db.Products.find({'pprice':{'$in':[10000,15000,16000]}});
+db.Products.find({ 'pprice': { '$in': [10000, 15000, 16000] } });
+// and
+db.Products.find({ '$and': [{ 'pprice': { '$lte': 10000 } }, { 'psize': { '$gt': 5 } }] });
 
+db.Products.find({ '$or': [{ 'pprice': { '$lt': 20000 } }, { 'psize': { '$lt': 4 } }] });
 
+db.Products.find({ '$or': [{ 'pbrand': { '$eq': 'Samsung' } }, { 'pbrand': { '$eq': 'Huawei' } }], '$and': [{ 'pprice': { '$lt': 15000 } }] });
+db.Products.find({ '$and': [{ 'pbrand': { '$in': ['Huawei', 'Samsung'] } }, { 'pprice': { '$lt': 15000 } }] });
 
+db.Products.find({ 'psize.x': { '$exists': true } });
+db.Products.find({ 'psize.x': { '$exists': false } });
+db.Products.find({ 'psize.x': { '$gt': 2 } });
+
+db.Products.find({ 'pbrand': 'Acer' });
+db.Products.find({ 'pbrand': { '$eq': 'Acer' } });
+
+db.Products.find({ 'pname': { '$regex': 'ax' } });
+//start with
+db.Products.find({ 'pname': { '$regex': '^G' } });
+db.Products.find({ 'pname': { '$regex': '^g' } });
+db.Products.find({ 'pname': { '$regex': '^g', '$options': 'i' } });
+
+db.Products.find({ 'pname': { '$regex': 's$' } });
+db.Products.find({ 'pname': { '$regex': 's$', '$options': 'i' } });
+
+db.Products.find({ 'pname': { '$regex': '[sS]$' } });
 
 
 

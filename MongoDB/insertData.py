@@ -16,6 +16,20 @@ def insertMany():
         print("New record _id = {}".format(currID.inserted_ids))
 
 
+def serchData():
+    with (pymongo.MongoClient('localhost', 27017)) as conn:
+        db = conn.get_database('MobileShop')
+        where = {'pprice': {'$gt': 20000}}
+        orderBy = [('pprice', 1), ('pname', -1)]
+        found = db.Products.count_documents(where)
+        print('FOUND {}'.format(found))
+        cursor = db.Products.find(where).sort(orderBy)
+        for i in cursor:
+            print('NAME = {}\nPRICE = {}'.format(i['pname'], i['pprice']))
+            print('-' * 50)
+
+
 if __name__ == '__main__':
     # insertOne()
-    insertMany()
+    # insertMany()
+    serchData()
