@@ -46,8 +46,21 @@ db.Products.find({ 'pname': { '$regex': 's$', '$options': 'i' } });
 
 db.Products.find({ 'pname': { '$regex': '[sS]$' } });
 
+db.Products.find({}).sort({});
 
+db.Products.find({}, { 'pid': 1, 'pname': 1 }).sort({});
 
+db.Products.find({}, { 'psize': 0, 'pprice': 0 }).sort({});
+
+db.Products.update({ 'psize': { '$gt': 5 } }, { '$set': { 'pprice': 60000 } }, { 'multi': true });
+
+db.Products.find({ 'psize': { '$gt': 5 } });
+
+db.Products.update({ '$and': [{ 'pbrand': { '$eq': 'Wiko' } }, { 'pprice': { '$lt': 20000 } }] }, { '$set': { 'pprice': 20000 } }, { 'multi': true });
+
+db.Products.find({ 'pbrand': { '$eq': 'Wiko' } });
+
+db.Products.remove({ 'pprice': { '$lt': 20000 } });
 
 
 
