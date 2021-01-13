@@ -222,10 +222,11 @@ def comment_mflex():
         found = db['movies'].count_documents(where)
         if found == 0:
             print('ไม่พบหนังที่เลือก')
-            return
-        db['comments'].insert_one(
-            {'name': name + ' ' + lastname, 'email': email, 'mov"The Great Train Robbery"ie_id': 'xxxx',
-             'date': datetime.now()})
+        else:
+            db['comments'].insert_one(
+                {'name': name + ' ' + lastname, 'email': email, 'movie_id': db['movies'].find_one(where)['_id'],
+                 'text': comment,
+                 'date': datetime.now()})
 
 
 if __name__ == '__main__':
