@@ -11,7 +11,7 @@ import pymongo
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_Dialog(object):
+class Ui_TNISHOP(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
         Dialog.resize(407, 295)
@@ -122,11 +122,10 @@ class Ui_Dialog(object):
         self.textIdProduct.setFocus()
 
     def openBMI(self):
-        self.window = QtWidgets.QDialog()
-        self.ui = bmi.Ui_Dialog()
+        self.window = QtWidgets.QMainWindow()
+        self.ui = bmi.Ui_BMI()
         self.ui.setupUi(self.window)
         self.window.show()
-        Dialog.hide()
 
 
 
@@ -135,8 +134,8 @@ if __name__ == "__main__":
     import bmi
 
     app = QtWidgets.QApplication(sys.argv)
-    Dialog = QtWidgets.QDialog()
-    ui = Ui_Dialog()
-    ui.setupUi(Dialog)
-    Dialog.show()
+    tnishop = QtWidgets.QDialog()
+    ui = Ui_TNISHOP()
+    ui.setupUi(tnishop)
+    tnishop.show()
     sys.exit(app.exec_())

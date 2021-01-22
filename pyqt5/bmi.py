@@ -11,7 +11,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_Dialog(object):
+class Ui_BMI(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
         Dialog.resize(400, 300)
@@ -92,11 +92,11 @@ class Ui_Dialog(object):
         self.textWeight.setFocus()
 
     def openProduct(self):
-        self.window = QtWidgets.QDialog()
-        self.ui = tnishop.Ui_Dialog()
+        self.window = QtWidgets.QMainWindow()
+        self.ui = tnishop.Ui_TNISHOP()
         self.ui.setupUi(self.window)
         self.window.show()
-        Dialog.hide()
+
 
 
 
@@ -105,8 +105,8 @@ if __name__ == "__main__":
     import tnishop
 
     app = QtWidgets.QApplication(sys.argv)
-    Dialog = QtWidgets.QDialog()
-    ui = Ui_Dialog()
-    ui.setupUi(Dialog)
-    Dialog.show()
+    bmi = QtWidgets.QDialog()
+    ui = Ui_BMI()
+    ui.setupUi(bmi)
+    bmi.show()
     sys.exit(app.exec_())
